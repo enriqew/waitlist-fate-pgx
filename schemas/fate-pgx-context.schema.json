@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/enriqew/waitlist-fate-pgx/schemas/fate-pgx-context.schema.json",
+  "title": "FatePgxContext",
+  "description": "Combined schema for the fate_pgx_combined.json artifact — waitlist fate trends × PGx risk context.",
+  "type": "object",
+  "required": ["fate_trends", "pgx_context"],
+  "properties": {
+    "fate_trends": {
+      "type": "array",
+      "description": "Waitlist fate distribution records with YoY trends.",
+      "items": {
+        "$ref": "#/$defs/FateSummary"
+      }
+    },
+    "pgx_context": {
+      "type": "array",
+      "description": "PGx risk context for transplant drugs in LATAM populations.",
+      "items": {
+        "$ref": "#/$defs/PgxRiskEntry"
+      }
+    }
+  },
+  "$defs": {
+    "FateSummary": {
+      "type": "object",
+      "required": ["year", "organ", "bucket", "patients", "pct_of_total"],
+      "properties": {
+        "year": {
+          "type": "integer",
+          "description": "Calendar year of the OPTN/UNOS removal record.",
+          "minimum": 1990,
+          "maximum": 2030
+        },
+        "organ": {
+          "type": "string",
+          "description": "Transplant organ type (lowercase).",
+          "examples": ["kidney", "liver", "heart", "lung", "pancreas"]
+        },
+        "bucket": {
+          "type": "string",
+          "description": "Normalized outcome bucket.",
+          "enum": [
+            "transplanted_deceased",
+            "transplanted_living",
+            "died_waiting",
+            "removed_too_sick",
+            "improved",
+            "other"
+          ]
+        },
+        "patients": {
+          "type": "integer",
+          "description": "Number of patients removed for this reason in this year.",
+          "minimum": 0
+        },
+        "pct_of_total": {
+          "type": "number",
+          "description": "Percentage of total removals for this organ-year that this bucket represents.",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "yoy_change": {
+          "type": ["number", "null"],
+          "description": "Percentage-point change in bucket share vs prior year. Null for the first observed year."
+        }
+      },
+      "additionalProperties": false
+    },
+    "PgxRiskEntry": {
+      "type": "object",
+      "required": [
+        "population_code",
+        "drug_name",
+        "gene_symbol",
+        "percentage_requiring_change",
+        "baseline_ceu_percentage",
+        "delta_vs_baseline",
+        "classification_strength",
+        "absolute_gap"
+      ],
+      "properties": {
+        "population_code": {
+          "type": "string",
+          "description": "1000 Genomes super-population or sub-population code.",
+          "examples": ["MXL", "PEL", "CLM", "PUR", "CEU"]
+        },
+        "drug_name": {
+          "type": "string",
+          "description": "Drug name (lowercase).",
+          "examples": ["tacrolimus", "azathioprine"]
+        },
+        "gene_symbol": {
+          "type": "string",
+          "description": "Primary pharmacogene symbol.",
+          "examples": ["CYP3A5", "TPMT", "NUDT15"]
+        },
+        "percentage_requiring_change": {
+          "type": "number",
+          "description": "Percentage of this population requiring a dose/therapy change per CPIC guidelines.",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "baseline_ceu_percentage": {
+          "type": "number",
+          "description": "Equivalent percentage for the CEU (European) reference cohort.",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "delta_vs_baseline": {
+          "type": "number",
+          "description": "Difference in percentage points vs CEU baseline. Positive = LATAM higher than CEU."
+        },
+        "classification_strength": {
+          "type": "string",
+          "description": "CPIC evidence classification strength (e.g., Strong, Moderate).",
+          "examples": ["Strong", "Moderate", "Optional"]
+        },
+        "absolute_gap": {
+          "type": "number",
+          "description": "Absolute value of delta_vs_baseline.",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

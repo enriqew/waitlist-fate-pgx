@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Data — raw files are large and contain PII/licensing restrictions
+data/raw/
+data/snapshots/
+
+# dbt — compiled SQL and run artifacts
+dbt_project/target/
+dbt_project/logs/
+dbt_project/.user.yml
+
+# DuckDB local database files
+*.duckdb
+*.duckdb.wal
+
+# Exports — generated, not committed (artifacts/ has .gitkeep)
+data/exports/*
+!data/exports/.gitkeep
+artifacts/*
+!artifacts/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Secrets / credentials
+.env
+.env.*
+secrets/
+credentials/
