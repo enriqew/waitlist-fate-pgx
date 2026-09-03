@@ -56,3 +56,8 @@ desktop.ini
 .env.*
 secrets/
 credentials/
+
+# ── Agent/IDE session data ───────────────────────────────────────────────────
+.claude/
+.cursor/
+.aider*
