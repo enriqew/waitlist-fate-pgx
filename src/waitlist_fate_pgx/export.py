@@ -8,7 +8,7 @@ from dataclasses import asdict
 from .fate_analysis import compute_fate_trends
 from .pgx_context import load_pgx_risk_profile
 
-ROOT = pathlib.Path(__file__).resolve().parents[3]
+ROOT = pathlib.Path(__file__).resolve().parents[2]
 DATA_DIR = ROOT / "data"
 EXPORTS_DIR = DATA_DIR / "exports"
 ARTIFACTS_DIR = ROOT / "artifacts"
