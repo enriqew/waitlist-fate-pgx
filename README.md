@@ -2,7 +2,7 @@
 
 **Transplant Waitlist Fate × Pharmacogenomics**
 
-Intersects 32 years of US organ transplant waitlist removal data (OPTN/UNOS 1995–2026) with Latin American pharmacogenomic profiles (1000 Genomes Phase 3 × CPIC) to surface the genetic dimension of post-transplant risk — who dies waiting, and whether their ancestry predicts avoidable outcomes after transplant.
+Intersects 32 years of US organ transplant waitlist removal data (OPTN/UNOS 1995–2026) with Latin American pharmacogenomic profiles (1000 Genomes Phase 3 × CPIC) to surface the genetic dimension of post-transplant risk, who dies waiting, and whether their ancestry predicts avoidable outcomes after transplant.
 
 Live dashboard: [eredonda.com/projects/waitlist-fate-pgx](https://eredonda.com/projects/waitlist-fate-pgx?utm_source=github&utm_medium=referral)
 
@@ -10,7 +10,7 @@ Live dashboard: [eredonda.com/projects/waitlist-fate-pgx](https://eredonda.com/p
 
 ## Background
 
-Most pharmacogenomics (PGx) research focuses on the moment of prescribing. But for transplant patients, the prescribing window is **post-surgery** — and the drugs involved (tacrolimus, cyclosporine, mycophenolate, voriconazole, warfarin) have narrow therapeutic windows that are strongly modulated by pharmacogenes.
+Most pharmacogenomics (PGx) research focuses on the moment of prescribing. But for transplant patients, the prescribing window is **post-surgery**: and the drugs involved (tacrolimus, cyclosporine, mycophenolate, voriconazole, warfarin) have narrow therapeutic windows that are strongly modulated by pharmacogenes.
 
 CPIC dosing guidelines for these drugs were anchored on European ancestry cohorts (CEU). Latin American populations (MXL Mexican, PEL Peruvian, CLM Colombian, PUR Puerto Rican) show measurable divergence across CYP3A5, CYP2C19, CYP2C9, and DPYD. This project quantifies both the scale of waitlist mortality and the magnitude of that PGx gap.
 
@@ -22,13 +22,13 @@ CPIC dosing guidelines for these drugs were anchored on European ancestry cohort
 - **Granularity:** organ × year × removal reason
 - **Organs:** kidney, liver, heart, lung, pancreas, kidney–pancreas, heart–lung, intestine, vascular composite allograft (VCA)
 - **Removal reasons (normalized buckets):**
-  - `transplanted_deceased` — deceased-donor transplant (primary outcome)
-  - `transplanted_living` — living-donor transplant (kidney, select multi-organ)
-  - `improved` — condition improved or changed, removed from active list
-  - `removed_too_sick` — clinical deterioration, no longer transplant-eligible
-  - `died_waiting` — mortality on the waitlist (primary mortality metric)
-  - `other` — administrative, duplicate registration, relocation, unknown
-- **Access:** [optn.transplant.hrsa.gov/data](https://optn.transplant.hrsa.gov/data/) — Annual Report files
+  - `transplanted_deceased`: deceased-donor transplant (primary outcome)
+  - `transplanted_living`: living-donor transplant (kidney, select multi-organ)
+  - `improved`: condition improved or changed, removed from active list
+  - `removed_too_sick`: clinical deterioration, no longer transplant-eligible
+  - `died_waiting`: mortality on the waitlist (primary mortality metric)
+  - `other`: administrative, duplicate registration, relocation, unknown
+- **Access:** [optn.transplant.hrsa.gov/data](https://optn.transplant.hrsa.gov/data/), Annual Report files
 
 ### 1000 Genomes × CPIC (from `pgx-latam-atlas`)
 
@@ -65,7 +65,7 @@ Key structural patterns:
 - **2018 allocation policy change** is visible in heart data as a step-up in transplant rate
 - **COVID-19 signal (2020–2021):** transplant rate suppression across all organs, 2022 rebound
 - **Kidney** dominates by volume; living-donor transplants provide a second positive-outcome pathway not available for most other organs
-- **Liver** has a persistent "too sick to transplant" removal cluster — patients who deteriorate before a compatible organ is identified
+- **Liver** has a persistent "too sick to transplant" removal cluster, patients who deteriorate before a compatible organ is identified
 
 ### PGx dimension (transplant-critical drugs)
 
@@ -133,7 +133,7 @@ REASON_MAP = {
 
 ### Gold artifact schema
 
-`us-fate-distribution.json` — flat array of records:
+`us-fate-distribution.json`: flat array of records:
 
 ```json
 [
@@ -171,7 +171,7 @@ and [`pgx-latam-atlas`](https://github.com/enriqew/pgx-latam-atlas), which is
 why `make ingest` is a download and not an ETL run. The OPTN ingestion itself
 lives upstream.
 
-PGx artifacts are not re-generated here — run the [`pgx-latam-atlas`](https://github.com/enriqew/pgx-latam-atlas) pipeline and copy the gold layer.
+PGx artifacts are not re-generated here, run the [`pgx-latam-atlas`](https://github.com/enriqew/pgx-latam-atlas) pipeline and copy the gold layer.
 
 ## File structure
 
